@@ -2,6 +2,7 @@ FROM django:1.8.5-python2
 
 WORKDIR /usr/src/app
 
+RUN pip install mysqlclient psycopg2 django==1.8.4
 # freetds-dev just for pip install pymssql==2.1.3
 
 RUN apt-get update && apt-get install -y \

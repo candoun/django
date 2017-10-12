@@ -8,6 +8,8 @@ RUN apt-get update && apt-get install -y \
 		telnet \
 	--no-install-recommends && rm -rf /var/lib/apt/lists/*
 	
+RUN pip install cx_Oracle	
+
 COPY requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt
 RUN set -ex;\

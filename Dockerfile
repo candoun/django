@@ -6,9 +6,10 @@ RUN apt-get update && apt-get install -y \
 		make \
 		vim \
 		telnet \
+		freetds-dev \ #just for pip install pymssql==2.1.3
 	--no-install-recommends && rm -rf /var/lib/apt/lists/*
 	
-RUN pip install cx_Oracle	
+# RUN pip install --no-cache-dir cx_Oracle	
 
 COPY requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt

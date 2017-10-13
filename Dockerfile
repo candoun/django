@@ -2,7 +2,7 @@ FROM django:1.8.5-python2
 
 WORKDIR /usr/src/app
 
-RUN pip install mysqlclient psycopg2 django==1.8.4
+#RUN pip install mysqlclient psycopg2 django==1.8.4
 # freetds-dev just for pip install pymssql==2.1.3
 
 RUN apt-get update && apt-get install -y \
@@ -24,5 +24,8 @@ RUN set -ex;\
 	    \( -type f -a \( -name '*.pyc' -o -name '*.pyo' \) \) \
 	\) -exec rm -rf '{}' +; \
     rm requirements.txt
+
+COPY Django-1.8.4.tar.gz ./
+RUN tar -zxvf Django-1.8.4.tar.gz && cd Django-1.8.4 && python setup.py install
 
 CMD ["/bin/bash"]

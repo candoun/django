@@ -13,7 +13,7 @@ RUN apt-get update && apt-get install -y \
 	
 # RUN pip install --no-cache-dir cx_Oracle	
 
-COPY ../requirements.txt ./
+COPY requirements.txt ./
 RUN pip install --upgrade --no-cache-dir -r requirements.txt
 RUN set -ex;\
     find /usr/local -depth \
@@ -24,7 +24,7 @@ RUN set -ex;\
 	\) -exec rm -rf '{}' +; \
     rm requirements.txt
 
-COPY ../Django-1.8.4.tar.gz ./
+COPY Django-1.8.4.tar.gz ./
 RUN tar -zxvf Django-1.8.4.tar.gz && cd Django-1.8.4 && pwd && python setup.py install
 
 CMD ["/bin/bash"]

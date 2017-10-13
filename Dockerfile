@@ -6,7 +6,6 @@ WORKDIR /usr/src/app
 # freetds-dev just for pip install pymssql==2.1.3
 
 RUN apt-get update && apt-get install -y \
-		make \
 		vim \
 		telnet \
 		freetds-dev \
@@ -14,7 +13,7 @@ RUN apt-get update && apt-get install -y \
 	
 # RUN pip install --no-cache-dir cx_Oracle	
 
-COPY requirements.txt ./
+COPY ../requirements.txt ./
 RUN pip install --upgrade --no-cache-dir -r requirements.txt
 RUN set -ex;\
     find /usr/local -depth \
@@ -25,7 +24,7 @@ RUN set -ex;\
 	\) -exec rm -rf '{}' +; \
     rm requirements.txt
 
-COPY Django-1.8.4.tar.gz ./
-RUN tar -zxvf Django-1.8.4.tar.gz && cd Django-1.8.4 && python setup.py install
+COPY ../Django-1.8.4.tar.gz ./
+RUN tar -zxvf Django-1.8.4.tar.gz && cd Django-1.8.4 && pwd && python setup.py install
 
 CMD ["/bin/bash"]
